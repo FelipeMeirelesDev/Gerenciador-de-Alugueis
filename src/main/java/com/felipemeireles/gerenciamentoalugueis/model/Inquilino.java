@@ -1,12 +1,14 @@
 package com.felipemeireles.gerenciamentoalugueis.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-@Entity
-public class Inquilinos {
+import java.util.List;
+
+@Entity(name = "tb_inquilino")
+public class Inquilino {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
@@ -14,16 +16,20 @@ public class Inquilinos {
     private String email;
     private String telefone;
 
-    public Inquilinos(){
+    @OneToMany(mappedBy = "inquilino")
+    private List<Contrato> contratos;
+
+    public Inquilino(){
 
     }
 
-    public Inquilinos(Long id, String nome, String cpf, String email, String telefone) {
+    public Inquilino(Long id, String nome, String cpf, String email, String telefone, List<Contrato> contratos) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.telefone = telefone;
+        this.contratos = contratos;
     }
 
     public Long getId() {
@@ -64,5 +70,13 @@ public class Inquilinos {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public List<Contrato> getContratos() {
+        return contratos;
+    }
+
+    public void setContratos(List<Contrato> contratos) {
+        this.contratos = contratos;
     }
 }

@@ -1,34 +1,38 @@
 package com.felipemeireles.gerenciamentoalugueis.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-@Entity
+import java.util.List;
+
+@Entity(name = "tb_imovel")
 public class Imovel {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String bairro;
-    private String endereço;
     private String rua;
     private String numero;
     private Double valor_aluguel;
     private boolean disponibilidade;
+
+    @OneToMany(mappedBy = "imovel")
+    private List<Contrato> contratos;
 
 
     public Imovel(){
 
     }
 
-    public Imovel(Long id, String bairro, String endereço, String rua, String numero,Double valor_aluguel, boolean disponibilidade) {
+    public Imovel(Long id, String bairro, String rua, String numero,Double valor_aluguel, boolean disponibilidade, List<Contrato> contratos) {
         this.id = id;
         this.bairro = bairro;
-        this.endereço = endereço;
         this.rua = rua;
         this.numero = numero;
         this.valor_aluguel = valor_aluguel;
         this.disponibilidade = disponibilidade;
+        this.contratos = contratos;
     }
 
     public Long getId() {
@@ -47,14 +51,6 @@ public class Imovel {
         this.bairro = bairro;
     }
 
-    public String getEndereço() {
-        return endereço;
-    }
-
-    public void setEndereço(String endereço) {
-        this.endereço = endereço;
-    }
-
     public String getRua() {
         return rua;
     }
@@ -71,11 +67,27 @@ public class Imovel {
         this.numero = numero;
     }
 
-    public boolean isDisponibilidade() {
+    public Double getValor_aluguel() {
+        return valor_aluguel;
+    }
+
+    public void setValor_aluguel(Double valor_aluguel) {
+        this.valor_aluguel = valor_aluguel;
+    }
+
+    public boolean getDisponibilidade() {
         return disponibilidade;
     }
 
     public void setDisponibilidade(boolean disponibilidade) {
         this.disponibilidade = disponibilidade;
+    }
+
+    public List<Contrato> getContratos() {
+        return contratos;
+    }
+
+    public void setContratos(List<Contrato> contratos) {
+        this.contratos = contratos;
     }
 }

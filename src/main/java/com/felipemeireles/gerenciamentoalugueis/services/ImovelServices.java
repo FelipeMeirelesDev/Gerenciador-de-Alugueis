@@ -10,9 +10,14 @@ import java.util.List;
 @Service
 public class ImovelServices {
 
-    ImovelRepository repository;
+    private final ImovelRepository repository; // <-- sempre private final
 
-    public Imovel salvarImovel(Imovel imovel){
+    // Injeção via construtor (melhor prática)
+    public ImovelServices(ImovelRepository repository) {
+        this.repository = repository;
+    }
+
+    public void salvarImovel(Imovel imovel){
         repository.save(imovel);
     }
 

@@ -12,6 +12,11 @@ public class ImovelController {
 
     ImovelServices services;
 
+    // Injeção do service via construtor
+    public ImovelController(ImovelServices services) {
+        this.services = services;
+    }
+
     @GetMapping("/{id}")
     public Imovel buscarImovel(@PathVariable Long id){
         return services.buscarImovel(id);
@@ -23,7 +28,7 @@ public class ImovelController {
     }
 
     @PostMapping
-    public void salvarImovel(Imovel imovel){
+    public void salvarImovel(@RequestBody Imovel imovel){
         services.salvarImovel(imovel);
     }
 

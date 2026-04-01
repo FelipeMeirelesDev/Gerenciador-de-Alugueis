@@ -15,24 +15,24 @@ public class Imovel {
     private String rua;
     private String numero;
     private Double valor_aluguel;
-    private boolean disponibilidade;
+    private Boolean disponibilidade;
 
-    @OneToMany(mappedBy = "imovel")
-    private List<Contrato> contratos;
+    // @OneToMany(mappedBy = "imovel")
+    // private List<Contrato> contratos;
 
 
     public Imovel(){
 
     }
 
-    public Imovel(Long id, String bairro, String rua, String numero,Double valor_aluguel, boolean disponibilidade, List<Contrato> contratos) {
+    public Imovel(Long id, String bairro, String rua, String numero,Double valor_aluguel, boolean disponibilidade /*List<Contrato> contratos*/) {
         this.id = id;
         this.bairro = bairro;
         this.rua = rua;
         this.numero = numero;
         this.valor_aluguel = valor_aluguel;
         this.disponibilidade = disponibilidade;
-        this.contratos = contratos;
+        //this.contratos = contratos;
     }
 
     public Long getId() {
@@ -83,11 +83,11 @@ public class Imovel {
         this.disponibilidade = disponibilidade;
     }
 
-    public List<Contrato> getContratos() {
+    /*public List<Contrato> getContratos() {
         return contratos;
     }
 
     public void setContratos(List<Contrato> contratos) {
         this.contratos = contratos;
-    }
+    }*/
 }

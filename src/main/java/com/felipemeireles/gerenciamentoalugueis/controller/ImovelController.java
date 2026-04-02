@@ -7,12 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/imovel")
+@RequestMapping("/api/imoveis")
 public class ImovelController {
 
     ImovelServices services;
 
-    // Injeção do service via construtor
     public ImovelController(ImovelServices services) {
         this.services = services;
     }

@@ -16,20 +16,20 @@ public class Inquilino {
     private String email;
     private String telefone;
 
-    @OneToMany(mappedBy = "inquilino")
-    private List<Contrato> contratos;
+    //@OneToMany(mappedBy = "inquilino")
+    //private List<Contrato> contratos;
 
     public Inquilino(){
 
     }
 
-    public Inquilino(Long id, String nome, String cpf, String email, String telefone, List<Contrato> contratos) {
+    public Inquilino(Long id, String nome, String cpf, String email, String telefone/*, List<Contrato> contratos*/) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.telefone = telefone;
-        this.contratos = contratos;
+        //this.contratos = contratos;
     }
 
     public Long getId() {
@@ -72,11 +72,11 @@ public class Inquilino {
         this.telefone = telefone;
     }
 
-    public List<Contrato> getContratos() {
+    /*public List<Contrato> getContratos() {
         return contratos;
-    }
+    }*/
 
-    public void setContratos(List<Contrato> contratos) {
+    /*public void setContratos(List<Contrato> contratos) {
         this.contratos = contratos;
-    }
+    }*/
 }

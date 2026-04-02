@@ -75,11 +75,11 @@ public class Imovel {
         this.valor_aluguel = valor_aluguel;
     }
 
-    public boolean getDisponibilidade() {
+    public Boolean getDisponibilidade() {
         return disponibilidade;
     }
 
-    public void setDisponibilidade(boolean disponibilidade) {
+    public void setDisponibilidade(Boolean disponibilidade) {
         this.disponibilidade = disponibilidade;
     }
 

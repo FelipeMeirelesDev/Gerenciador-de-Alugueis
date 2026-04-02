@@ -1,6 +1,5 @@
 package com.felipemeireles.gerenciamentoalugueis.controller;
 
-import com.felipemeireles.gerenciamentoalugueis.model.Imovel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,28 @@ public class PaginaController {
     }
 
     @RequestMapping("/imovel")
-    public String pagina_imoveis(Model model) {
-        return "imoveis";
+    public String pagina_imovel(Model model) {
+        return "imovel";
     }
+
+    @RequestMapping("/inquilino")
+    public String pagina_inquilino(Model model) {
+        return "inquilino";
+    }
+
+    @RequestMapping("/contrato")
+    public String pagina_contrato(Model model) {
+        return "contrato";
+    }
+
+    @RequestMapping("/pagamento")
+    public String pagina_pagamento(Model model) {
+        return "pagamento";
+    }
+
+    @RequestMapping("/configuracao")
+    public String pagina_configuracao(Model model) {
+        return "configuracao";
+    }
+
 }

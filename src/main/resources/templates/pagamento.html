@@ -2,14 +2,13 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Gerenciador de Aluguéis</title>
+    <title>Pagamentos</title>
     <link rel="stylesheet" th:href="@{/css/style.css(v=${#dates.createNow().time})}">
 </head>
 <body>
 
 <div class="container">
 
-    <!-- Sidebar -->
     <aside class="sidebar">
         <div class="logo-area">
             <h2>Gerenciador de Aluguéis</h2>
@@ -17,7 +16,7 @@
         </div>
 
         <nav class="menu">
-            <a th:href="@{/pagina/inicio}" class="menu-item active">
+            <a th:href="@{/pagina/inicio}" class="menu-item">
                 <span class="icon">📊</span>
                 <span>Geral</span>
             </a>
@@ -37,7 +36,7 @@
                 <span>Contratos</span>
             </a>
 
-            <a th:href="@{/pagina/pagamento}" class="menu-item">
+            <a th:href="@{/pagina/pagamento}" class="menu-item active">
                 <span class="icon">💰</span>
                 <span>Pagamentos</span>
             </a>
@@ -49,11 +48,10 @@
         </nav>
     </aside>
 
-    <!-- Conteúdo -->
     <main class="content">
         <div class="page-header">
-            <h1>Dashboard</h1>
-            <p>Bem-vindo ao sistema de gerenciamento de aluguéis.</p>
+            <h1>Pagamentos</h1>
+            <p>Área destinada ao controle financeiro e registro de pagamentos.</p>
         </div>
     </main>
 

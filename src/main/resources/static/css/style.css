@@ -6,106 +6,215 @@
 }
 
 /* Layout geral */
+body {
+    background-color: #f1f5f9;
+}
+
 .container {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /* Sidebar */
 .sidebar {
-    width: 220px;
-    background-color: #1e293b;
+    width: 260px;
+    background: linear-gradient(180deg, #0f172a, #1e293b);
     color: white;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 18px;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.08);
 }
 
-.sidebar h2 {
+/* Logo / topo */
+
+.logo-area {
+    margin-bottom: 35px;
+    padding: 0 8px;
     text-align: center;
-    margin-bottom: 30px;
 }
 
-.sidebar ul {
-    list-style: none;
+.logo-area h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    text-align: center;
 }
 
-.sidebar li {
-    padding: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    border-radius: 5px;
+.logo-area p {
+    font-size: 14px;
+    color: #cbd5e1;
+    text-align: center;
 }
 
-.sidebar li:hover {
-    background-color: #334155;
+/* Menu */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Cada item */
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+    font-size: 15px;
+    font-weight: 500;
+    border-left: 4px solid transparent;
+}
+
+/* Ícone */
+.menu-item .icon {
+    font-size: 18px;
+    min-width: 22px;
+    text-align: center;
+}
+
+/* Hover */
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: translateX(4px);
+}
+
+/* Clique */
+.menu-item:active {
+    transform: scale(0.98);
+}
+
+/* Página atual ativa */
+.menu-item.active {
+    background-color: rgba(59, 130, 246, 0.18);
+    border-left: 4px solid #3b82f6;
+    transform: translateX(4px);
+}
+
+/* Hover quando já estiver ativo */
+.menu-item.active:hover {
+    background-color: rgba(59, 130, 246, 0.24);
 }
 
 /* Conteúdo */
 .content {
     flex: 1;
-    padding: 30px;
-    background-color: #f1f5f9;
+    padding: 40px;
+    background-color: #f8fafc;
 }
 
 .content h1 {
+    font-size: 30px;
     margin-bottom: 10px;
+    color: #0f172a;
+}
+
+.content p {
+    color: #475569;
+    font-size: 16px;
+}
+
+/* Cabeçalho da página */
+.page-header {
+    margin-bottom: 25px;
+}
+
+.page-header h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
+    color: #0f172a;
+}
+
+.page-header p {
+    color: #64748b;
+    font-size: 15px;
 }
 
 /* Formulário */
 .form {
     max-width: 500px;
     background: white;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    margin-top: 20px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .form-group label {
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     font-weight: bold;
+    color: #1e293b;
 }
 
 .form-group input,
 .form-group select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s ease;
+    font-size: 15px;
 }
 
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #2563eb;
+}
+
+/* Botões normais do sistema */
 button {
     background-color: #1e293b;
     color: white;
-    padding: 10px;
+    padding: 11px 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: 0.25s;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 button:hover {
     background-color: #334155;
 }
 
+/* Campo de dinheiro */
 .input-money {
     display: flex;
     align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
     overflow: hidden;
 }
 
 .input-money span {
     background-color: #e2e8f0;
-    padding: 8px 10px;
+    padding: 10px 12px;
     font-weight: bold;
+    color: #334155;
 }
 
 .input-money input {
     border: none;
     outline: none;
-    padding: 8px;
+    padding: 10px;
     flex: 1;
+    font-size: 15px;
+}
+
+/* Mensagem de retorno */
+.mensagem {
+    margin-top: 18px;
+    font-weight: bold;
+    color: #0f766e;
 }

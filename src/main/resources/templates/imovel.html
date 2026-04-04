@@ -7,78 +7,166 @@
 </head>
 <body>
 
-<div class="container">
+<div class="app-layout">
 
-    <!-- Sidebar -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
-        <div class="logo-area">
-            <h2>Gerenciador de Aluguéis</h2>
-            <p>Painel administrativo</p>
+        <div>
+            <div class="brand">
+                <div class="brand-icon">🏠</div>
+                <div class="brand-text">
+                    <h2>Gerenciador de Aluguéis</h2>
+                    <p>Painel administrativo</p>
+                </div>
+            </div>
+
+            <nav class="menu">
+                <a th:href="@{/pagina/inicio}" class="menu-item">
+                    <span class="icon">📊</span>
+                    <span>Geral</span>
+                </a>
+
+                <a th:href="@{/pagina/imovel}" class="menu-item active">
+                    <span class="icon">🏠</span>
+                    <span>Imóveis</span>
+                </a>
+
+                <a th:href="@{/pagina/inquilino}" class="menu-item">
+                    <span class="icon">👤</span>
+                    <span>Inquilinos</span>
+                </a>
+
+                <a th:href="@{/pagina/contrato}" class="menu-item">
+                    <span class="icon">📄</span>
+                    <span>Contratos</span>
+                </a>
+
+                <a th:href="@{/pagina/pagamento}" class="menu-item">
+                    <span class="icon">💰</span>
+                    <span>Pagamentos</span>
+                </a>
+
+                <a th:href="@{/pagina/configuracao}" class="menu-item">
+                    <span class="icon">⚙️</span>
+                    <span>Configurações</span>
+                </a>
+            </nav>
         </div>
 
-        <nav class="menu">
-            <a th:href="@{/pagina/inicio}" class="menu-item">
-                <span class="icon">📊</span>
-                <span>Geral</span>
-            </a>
-
-            <a th:href="@{/pagina/imovel}" class="menu-item active">
-                <span class="icon">🏠</span>
-                <span>Imóveis</span>
-            </a>
-
-            <a th:href="@{/pagina/inquilino}" class="menu-item">
-                <span class="icon">👤</span>
-                <span>Inquilinos</span>
-            </a>
-
-            <a th:href="@{/pagina/contrato}" class="menu-item">
-                <span class="icon">📄</span>
-                <span>Contratos</span>
-            </a>
-
-            <a th:href="@{/pagina/pagamento}" class="menu-item">
-                <span class="icon">💰</span>
-                <span>Pagamentos</span>
-            </a>
-
-            <a th:href="@{/pagina/configuracao}" class="menu-item">
-                <span class="icon">⚙️</span>
-                <span>Configurações</span>
-            </a>
-        </nav>
+        <div class="sidebar-footer">
+            Sistema de Gestão de Aluguéis
+        </div>
     </aside>
 
-    <!-- Conteúdo -->
-    <main class="content">
+    <!-- MAIN -->
+    <main class="main-content">
 
-        <div class="page-header">
-            <h1>Cadastro de Imóvel</h1>
-            <p>Preencha as informações do imóvel para cadastro no sistema.</p>
+        <!-- TOPO -->
+        <section class="topbar">
+            <div>
+                <h1>Imóveis</h1>
+                <p>Gerencie os imóveis cadastrados no sistema.</p>
+            </div>
+
+            <button class="btn-primary" id="btnAbrirModal">
+                + Adicionar Imóvel
+            </button>
+        </section>
+
+        <!-- CARDS -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">🏠</div>
+                <div>
+                    <p>Total de imóveis</p>
+                    <h3 id="totalImoveis">0</h3>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div>
+                    <p>Disponíveis</p>
+                    <h3 id="imoveisDisponiveis">0</h3>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🔒</div>
+                <div>
+                    <p>Indisponíveis</p>
+                    <h3 id="imoveisIndisponiveis">0</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- LISTA -->
+        <section class="card">
+            <div class="card-header table-header">
+                <div>
+                    <h2>Lista de Imóveis</h2>
+                    <p>Visualize todos os imóveis cadastrados.</p>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="imovel-table">
+                    <thead>
+                    <tr>
+                        <th>Bairro</th>
+                        <th>Rua</th>
+                        <th>Número</th>
+                        <th>Valor</th>
+                        <th class="center-col">Status</th>
+                        <th class="center-col">Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tabelaImoveis">
+                    <!-- JS preenche -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <p id="mensagem" class="mensagem"></p>
+    </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+        <div class="modal-header">
+            <h2 id="tituloModal">Adicionar Imóvel</h2>
+            <button class="close-btn" id="btnFecharModal">&times;</button>
         </div>
 
         <form class="form" id="formImovel">
+            <input type="hidden" id="imovelId">
 
-            <div class="form-group">
-                <label for="bairro">Bairro</label>
-                <input type="text" id="bairro" name="bairro" placeholder="Ex: Centro" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="bairro">Bairro</label>
+                    <input type="text" id="bairro" name="bairro" placeholder="Ex: Centro" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="rua">Rua</label>
+                    <input type="text" id="rua" name="rua" placeholder="Ex: Rua das Flores" required>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="rua">Rua</label>
-                <input type="text" id="rua" name="rua" placeholder="Ex: Rua das Flores" required>
-            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="numero">Número</label>
+                    <input type="text" id="numero" name="numero" placeholder="Ex: 123" required>
+                </div>
 
-            <div class="form-group">
-                <label for="numero">Número</label>
-                <input type="text" id="numero" name="numero" placeholder="Ex: 123" required>
-            </div>
-
-            <div class="form-group">
-                <label for="valorAluguel">Valor do Aluguel (Mensal)</label>
-                <div class="input-money">
-                    <span>R$</span>
-                    <input type="number" step="0.01" id="valorAluguel" name="valorAluguel" placeholder="0,00" required>
+                <div class="form-group">
+                    <label for="valorAluguel">Valor do Aluguel</label>
+                    <div class="input-money">
+                        <span>R$</span>
+                        <input type="number" step="0.01" id="valorAluguel" name="valorAluguel" placeholder="0,00" required>
+                    </div>
                 </div>
             </div>
 
@@ -90,16 +178,64 @@
                 </select>
             </div>
 
-            <button type="submit">Salvar Imóvel</button>
-
+            <div class="form-actions">
+                <button type="button" class="btn-secondary" id="btnCancelar">Cancelar</button>
+                <button type="submit" class="btn-primary" id="btnSalvar">Salvar Imóvel</button>
+            </div>
         </form>
-
-        <p id="mensagem" class="mensagem"></p>
-
-    </main>
-
+    </div>
 </div>
 
-<script th:src="@{/js/imovel.js}"></script>
+<!-- MODAL EXCLUIR -->
+<div class="modal-overlay" id="modalExcluirOverlay">
+    <div class="modal modal-delete">
+        <div class="modal-header">
+            <h2>Excluir Imóvel</h2>
+            <button class="close-btn" id="btnFecharExcluir">&times;</button>
+        </div>
+
+        <div class="delete-warning">
+            <div class="delete-icon">🗑️</div>
+            <div>
+                <h3>Tem certeza que deseja excluir este imóvel?</h3>
+                <p>Essa ação não poderá ser desfeita.</p>
+            </div>
+        </div>
+
+        <div class="delete-info-card">
+            <div class="delete-info-row">
+                <span>Bairro</span>
+                <strong id="deleteBairro">-</strong>
+            </div>
+
+            <div class="delete-info-row">
+                <span>Rua</span>
+                <strong id="deleteRua">-</strong>
+            </div>
+
+            <div class="delete-info-row">
+                <span>Número</span>
+                <strong id="deleteNumero">-</strong>
+            </div>
+
+            <div class="delete-info-row">
+                <span>Valor do aluguel</span>
+                <strong id="deleteValor">-</strong>
+            </div>
+
+            <div class="delete-info-row">
+                <span>Disponibilidade</span>
+                <strong id="deleteDisponibilidade">-</strong>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="button" class="btn-secondary" id="btnCancelarExcluir">Cancelar</button>
+            <button type="button" class="btn-danger" id="btnConfirmarExcluir">Excluir Imóvel</button>
+        </div>
+    </div>
+</div>
+
+<script src="/js/imovel.js"></script>
 </body>
 </html>

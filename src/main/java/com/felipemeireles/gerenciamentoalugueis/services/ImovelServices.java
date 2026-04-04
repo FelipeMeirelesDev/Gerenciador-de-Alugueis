@@ -2,6 +2,7 @@ package com.felipemeireles.gerenciamentoalugueis.services;
 
 import com.felipemeireles.gerenciamentoalugueis.model.Imovel;
 import com.felipemeireles.gerenciamentoalugueis.repository.ImovelRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ public class ImovelServices {
         this.repository = repository;
     }
 
-    public void salvarImovel(Imovel imovel){
-        repository.save(imovel);
+    public Imovel salvarImovel(Imovel imovel){
+        return repository.save(imovel);
     }
 
     public List<Imovel> listarImoveis(){
@@ -31,5 +32,9 @@ public class ImovelServices {
 
     public void deletarImovel (Long id){
         repository.deleteById(id);
+    }
+
+    public Imovel atualizarImovel (Imovel imovel){
+        return repository.save(imovel);
     }
 }

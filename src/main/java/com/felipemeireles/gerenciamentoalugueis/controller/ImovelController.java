@@ -27,8 +27,8 @@ public class ImovelController {
     }
 
     @PostMapping
-    public void salvarImovel(@RequestBody Imovel imovel){
-        services.salvarImovel(imovel);
+    public Imovel salvarImovel(@RequestBody Imovel imovel){
+        return services.salvarImovel(imovel);
     }
 
     @DeleteMapping("/{id}")
@@ -36,5 +36,10 @@ public class ImovelController {
         services.deletarImovel(id);
     }
 
+    @PutMapping("/{id}")
+    public Imovel atualizarImovel(@PathVariable Long id, @RequestBody Imovel imovel){
+        imovel.setId(id);
+        return services.atualizarImovel(imovel);
+    }
 
 }
